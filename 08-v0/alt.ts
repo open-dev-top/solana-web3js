@@ -10,12 +10,13 @@ import {
 import fs from "fs";
 
 // 创建RPC连接
-const connection = new Connection("https://api.mainnet-beta.solana.com", "confirmed");
+const connection = new Connection("https://devnet.helius-rpc.com/?api-key=5478b127-a6be-4172-87cb-f36d697a8c6b", "confirmed")
+// const connection = new Connection("https://api.mainnet-beta.solana.com", "confirmed");
 // const connection = new Connection("https://mainnet-ams.chainbuff.com", "confirmed");
 
 // 本地导入钱包
-// const fromSecretKey = Uint8Array.from(JSON.parse(fs.readFileSync("wallet.json")));
-const secretKey = Uint8Array.from(JSON.parse(fs.readFileSync("web3xFMwEPrc92NeeXdAigni95NDnnd2NPuajTirao2.json")));
+const secretKey = Uint8Array.from(JSON.parse(fs.readFileSync("wallet.json", "utf-8")));
+// const secretKey = Uint8Array.from(JSON.parse(fs.readFileSync("web3xFMwEPrc92NeeXdAigni95NDnnd2NPuajTirao2.json")));
 const payer = Keypair.fromSecretKey(secretKey);
 
 async function createALT() {
@@ -56,7 +57,7 @@ async function createALT() {
 
 async function addAddresses() {
 
-    const lookupTableAddress = new PublicKey('2qqXrZZSG9naivqMyWHHUDRFVNh3YthsTbN5EPU8Poo5')
+    const lookupTableAddress = new PublicKey('7HJtG6KXFwvLYHjXoa6vvk1YU6FQo1VcS8vHdhCQZRmp')
 
     // 添加账户到ALT
     const extendInstruction = AddressLookupTableProgram.extendLookupTable({
@@ -65,7 +66,7 @@ async function addAddresses() {
         authority: payer.publicKey,
         addresses: [
             payer.publicKey,
-            new PublicKey('buffaAJKmNLao65TDTUGq8oB9HgxkfPLGqPMFQapotJ'),
+            new PublicKey('CKRpaht6jbuNMyWURMmw8CuNqFZfcjKEK6YLuiNjePCQ'),
             SystemProgram.programId, // 
         ],
     });
@@ -94,7 +95,7 @@ async function addAddresses() {
 
 async function transfer() {
 
-    const lookupTableAddress = new PublicKey('2qqXrZZSG9naivqMyWHHUDRFVNh3YthsTbN5EPU8Poo5')
+    const lookupTableAddress = new PublicKey('7HJtG6KXFwvLYHjXoa6vvk1YU6FQo1VcS8vHdhCQZRmp')
 
     // 获取ALT
     const ALT = await connection.getAddressLookupTable(lookupTableAddress);
@@ -105,7 +106,7 @@ async function transfer() {
     console.log('lookupTableAccount:', lookupTableAccount)
 
     // 目标地址
-    const toAddress = new PublicKey('buffaAJKmNLao65TDTUGq8oB9HgxkfPLGqPMFQapotJ');
+    const toAddress = new PublicKey('Fs9yoikaDDrkhZxYcy9RUvzn7ksGxLxdfLdredykeg5S');
 
     // 转账指令
     const instruction = SystemProgram.transfer({
@@ -138,7 +139,7 @@ async function transfer() {
 
 async function parseTx() {
 
-    const parsedTransaction1 = await connection.getParsedTransaction('4LwygRtiF9ZCrbGKoh8MEzmxowaRHPaDc1nsinkv72uXU2cUCuZ8YskBBgsvbBEMZ5Pqpf6C6WcXtCkqAuLZand1', {
+    const parsedTransaction1 = await connection.getParsedTransaction('ySKnyUddVmBK9Q1yE2YnWx2WBunNjzB28G8gmByTwzES8YutDZB2qpxmski5AYjFQDbyYdGG39JEKvBeJabp2PF', {
         commitment: "confirmed",
         maxSupportedTransactionVersion: 0
     });
