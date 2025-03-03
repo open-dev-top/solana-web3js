@@ -1,6 +1,7 @@
 import { Connection, PublicKey, LAMPORTS_PER_SOL } from '@solana/web3.js';
 
-const connection = new Connection("https://api.mainnet-beta.solana.com", "confirmed");
+const connection = new Connection("https://devnet.helius-rpc.com/?api-key=5478b127-a6be-4172-87cb-f36d697a8c6b", "confirmed")
+// const connection = new Connection("https://api.mainnet-beta.solana.com", "confirmed");
 // const connection = new Connection("https://mainnet-ams.chainbuff.com", "confirmed");
 
 async function main() {
